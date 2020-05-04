@@ -12,6 +12,10 @@ public class TCPConnection {
     private final BufferedWriter out;
     private final TCPConnectionListener eventListener;
 
+    public TCPConnection(TCPConnectionListener eventListener, String ipAddress, int port) throws IOException { //Create new socket by ip address and port number
+        this(new Socket(ipAddress, port), eventListener);
+    } 
+
     public TCPConnection(Socket socket, TCPConnectionListener eventListener) throws IOException {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
